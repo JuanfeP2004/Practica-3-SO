@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <math.h>
 
 int main() {
 
@@ -10,8 +11,11 @@ int main() {
     int esNumero = 1;
     int size = 4;
 
+    int limpiar;
+
     do {
 
+        limpiar = 0;
         esNumero = 1;
 
         printf("Hola, ponga un numero o (+,-,*,/)\n");
@@ -29,7 +33,6 @@ int main() {
                 break;
             }
         }
-        //printf("%s", texto);
 
         if(esNumero == 1){
             
@@ -46,32 +49,42 @@ int main() {
             }
         }
         else {
-            switch (texto[0])
-                {
-                case '+':
-                    pila[0] = pila[1] + pila[0];
-                    break;
-                case '-':
-                    pila[0] = pila[1] - pila[0];
-                    break;
-                case '*':
-                    pila[0] = pila[1] * pila[0];
-                    break;
-                case '/':
-                    if(pila[0] != 0)
-                        pila[0] = pila[1] / pila[0];
-                    break;            
-                default:
 
-                    break;
-                }
+            if(strcmp(texto, "+") == 0) {
+                pila[0] = pila[1] + pila[0];
+                limpiar = 1;
+            }
+            else if(strcmp(texto, "-") == 0) {
+                pila[0] = pila[1] - pila[0];
+                limpiar = 1;
+            }
+            else if(strcmp(texto, "*") == 0) {
+                pila[0] = pila[1] * pila[0];
+                limpiar = 1;
+            }
+            else if(strcmp(texto, "/") == 0) {
+                if(pila[0] != 0) pila[0] = pila[1] / pila[0];
+                limpiar = 1;
+            }
+            /*else if(strcmp(texto, "cos")) cos(pila[0]);
+            else if(strcmp(texto, "sin")) sin(pila[0]);
+            else if(strcmp(texto, "tan")) tan(pila[0]);
+            else if(strcmp(texto, "pow2")) pila[0] = pila[0] * pila[0];
+            else if(strcmp(texto, "powy")) {
+                powf(pila[1], pila[0]);
+                limpiar = 1;
+            }
+            else if(strcmp(texto, "sqrt")) sqrtf(pila[0]);*/
 
-            pila[1] = pila[2];
-            pila[2] = pila[3];
-            pila[3] = 0;
+            if(limpiar == 1) {
+                pila[1] = pila[2];
+                pila[2] = pila[3];
+                pila[3] = 0;
+            }
         }
 
-        system("clear");
+        if(strcmp(texto, "salir") == 0) break;
+        system("clear");      
     }
     while (0 == 0);
 
