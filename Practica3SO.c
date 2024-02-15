@@ -31,6 +31,9 @@ int main() {
         
         for (int i = 0; texto[i] != '\0'; i++) {
             if(texto[i] == '.') continue;
+            if(texto[i] == '-' && i == 0 && texto[i+1] != '\0') {
+                continue;
+            }
             if(!isdigit(texto[i])) {
                 esNumero = 0;
                 break;
